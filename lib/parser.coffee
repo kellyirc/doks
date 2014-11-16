@@ -79,7 +79,11 @@ class Parser
 
     addObjectToResult line.split Expressions.TAG_SPLIT for line in lines
 
-    resultObj = {}
+    # dat based default info that people probably want
+    resultObj =
+      lineNumber: commentData.lineNumber
+      filePath: commentData.file
+      fileName: commentData.file.split("\\").pop().split("/").pop()
 
     for arrayTag in @options.arrayTags
       typeOfArray = _.filter results, (result) -> result.name is arrayTag
@@ -102,6 +106,7 @@ class Parser
 
     _.each files, (file) =>
 
+      # read the file and split it into lines
       fileMap[file] = []
 
       fileContent = fs.readFileSync file,
@@ -111,6 +116,7 @@ class Parser
 
       len = fileLines.length
 
+      # parse out comments
       for i in [0...len]
         line = fileLines[i]
         continue if not Expressions.START_COMMENT[@options.language].test line
@@ -118,14 +124,17 @@ class Parser
         lineNum = i + 1
         commentLines = []
 
+        # we have a comment, lets go until the end of the comment
         while i < len and not Expressions.END_COMMENT[@options.language].test line
           commentLines.push line
           i++
           line = fileLines[i]
 
+        # get rid of the initial comment line
         commentLines.shift()
         commentString = commentLines.join "\n"
 
+        # generate a comment object
         fullCommentObject = @handleComment
           lineNumber: lineNum
           file: file

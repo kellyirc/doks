@@ -9,7 +9,7 @@ parser = new Parser
   ]
 
 console.log "==COFFEE=="
-parser.write()
+#parser.write()
 
 parser = new Parser
   language: "js"
