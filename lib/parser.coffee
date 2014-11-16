@@ -21,7 +21,6 @@ class Expressions
 
   @GLOBAL_LINES = /\r\n|\n/g
 
-
   @LINE_HEAD_CHAR =
     js: /^\s*\*/,
     coffee: /^\s*#/
