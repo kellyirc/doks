@@ -27,6 +27,17 @@
 class MathExample
 
   ###*
+  # * @desc Subtract two numbers.
+  # * @name sub
+  # * @category Simple
+  # * @class MathExample
+  # * @param a (The first number)
+  # * @param b (The second number)
+  # * @return a+b
+  ###
+  sub: (a, b) -> a-b
+
+  ###*
    * @desc Adds two numbers together. Here, we specify the type of the parameters. (tesT)
    *
    * @name add
@@ -43,17 +54,6 @@ class MathExample
   # Of course, we can still pick up unspecified tags, but there's no guarantee that it will be handled correctly
   # Perhaps users will specify that in a config file.
   add: (a, b) -> a+b
-
-  ###*
-  # * @desc Subtract two numbers.
-  # * @name sub
-  # * @category Simple
-  # * @class MathExample
-  # * @param a (The first number)
-  # * @param b (The second number)
-  # * @return a+b
-  ###
-  sub: (a, b) -> a-b
 
   ###*
   #* Divide two numbers.

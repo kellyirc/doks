@@ -100,4 +100,18 @@ angular.module('doks', ['mgcrea.ngStrap', 'ui.router', 'ui.select', 'ncy-angular
         if($scope.urlParams.category) $scope.contentFilter[$scope.$parent.config.keys.category] = $scope.urlParams.category;
         if($scope.urlParams.mainType) $scope.contentFilter[$scope.$parent.config.keys.mainType] = $scope.urlParams.mainType;
         if($scope.urlParams.subType)  $scope.contentFilter[$scope.$parent.config.keys.subType]  = $scope.urlParams.subType;
+
+        $scope.getLowestSort = function() {
+            return function(object) {
+                var value = object[$scope.$parent.config.keys.subType];
+                return value ? value.basicInfo : null;
+            };
+        };
+
+        $scope.getParentSort = function() {
+            return function(object) {
+                var value = object[$scope.$parent.config.keys.mainType];
+                return value ? value.basicInfo : null;
+            };
+        };
     }]);

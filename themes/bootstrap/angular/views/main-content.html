@@ -19,7 +19,7 @@
                 <div class="panel-heading">Navigate</div>
                 <div class="panel-body nav-container">
                     <div ng-repeat="category in categories | filter:urlParams.category">
-                        <div ng-repeat="mainObj in categoryByMain[category] | filter:urlParams.mainType" ng-if="mainObj[config.keys.subType]">
+                        <div ng-repeat="mainObj in categoryByMain[category] | filter:urlParams.mainType | orderBy:getLowestSort() | orderBy:getParentSort()" ng-if="mainObj[config.keys.subType]">
                             <span ng-if="!urlParams.category">
                                 <a ui-sref="hasCategory({
                                     category: category
