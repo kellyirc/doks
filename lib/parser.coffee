@@ -35,7 +35,10 @@ class Parser
   setOptions: (@options) ->
     @options.language ?= "coffee"
     @options.glob ?= "**/*.#{@options.language}"
+    @options.lib ?= "angular"
+    @options.theme ?= "bootstrap"
     @options.arrayTags ?= []
+    @options.defaults ?= {}
 
   getFiles: ->
     throw new Error "You have to set a glob first!" if not @options.glob
@@ -95,6 +98,8 @@ class Parser
 
     (resultObj[result.name] = result) for result in nonArrayResults
 
+    (resultObj[defaultKey] ?= defaultVal) for defaultKey, defaultVal of @options.defaults
+
     resultObj
 
   parse: ->
@@ -145,8 +150,16 @@ class Parser
     _.flatten _.values fileMap
 
   write: (fileLoc = "output.json") ->
-    data = @parse()
-    fs.writeFile fileLoc, JSON.stringify data
 
+    startDate = Date.now()
+    parsedData = @parse()
+    endDate = Date.now()
+
+    data =
+      parsed: parsedData
+      startTime: startDate
+      endTime: endDate
+
+    fs.writeFile fileLoc, JSON.stringify data
 
 module.exports = exports = Parser

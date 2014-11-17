@@ -1,9 +1,29 @@
 ###*
  * @desc This class does math-like things.
  *
- * @name MathExample
+ * @class MathExample
  * @type Class
 ###
+
+###*
+ * @desc This is just a dummy class.
+ *
+ * @class TestClass
+ * @type Class
+###
+
+###*
+ * @desc This is a dummy function.
+ *
+ * @name dummy
+ * @type Function
+ * @category Simple
+ * @class TestClass
+ * @param {Number} a (The first number)
+ * @param {Number} b (The second number)
+ * @return {Number} a+b (The result of a+b)
+###
+
 class MathExample
 
   ###*
@@ -11,6 +31,8 @@ class MathExample
    *
    * @name add
    * @type Function
+   * @category Simple
+   * @class MathExample
    * @param {Number} a (The first number)
    * @param {Number} b (The second number)
    * @return {Number} a+b (The result of a+b)
@@ -24,6 +46,9 @@ class MathExample
 
   ###*
   # * @desc Subtract two numbers.
+  # * @name sub
+  # * @category Simple
+  # * @class MathExample
   # * @param a (The first number)
   # * @param b (The second number)
   # * @return a+b
@@ -34,6 +59,9 @@ class MathExample
   #* Divide two numbers.
   #* This is a multiline message spanning two lines.
   #*
+  #* @name div
+  #* @category Complex
+  #* @class MathExample
   #* @param a (The first number)
   #* @param b (The second number)
   #* @return a+b
@@ -45,6 +73,9 @@ class MathExample
    * This is a multiline message spanning
    * 3 lines.
    *
+   * @name mul
+   * @class MathExample
+   * @category Complex
    * @param a (The first number)
    * @param b (The second number)
    * @return a+b
