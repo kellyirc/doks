@@ -85,6 +85,7 @@ class Parser
     # dat based default info that people probably want
     resultObj =
       lineNumber: commentData.lineNumber
+      endLineNumber: commentData.endLineNumber
       filePath: commentData.file
       fileName: commentData.file.split("\\").pop().split("/").pop()
 
@@ -142,6 +143,7 @@ class Parser
         # generate a comment object
         fullCommentObject = @handleComment
           lineNumber: lineNum
+          endLineNumber: i+1
           file: file
           comment: commentString
 

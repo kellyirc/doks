@@ -18,28 +18,30 @@
             <div class="panel panel-default" bs-affix data-offset-top="-15">
                 <div class="panel-heading">Navigate</div>
                 <div class="panel-body nav-container">
-                    <div ng-repeat="category in categories | filter:urlParams.category">
-                        <div ng-repeat="mainObj in categoryByMain[category] | filter:urlParams.mainType | orderBy:getLowestSort() | orderBy:getParentSort()" ng-if="mainObj[config.keys.subType]">
-                            <span ng-if="!urlParams.category">
-                                <a ui-sref="hasCategory({
-                                    category: category
-                                })">{{category}}</a>
-                                <span class="glyphicon glyphicon-arrow-right"></span>
-                            </span>
-                            <span ng-if="!urlParams.mainType">
-                                <a ui-sref="hasMainType({
-                                    category: category,
-                                    mainType: mainObj[config.keys.mainType].basicInfo
-                                })">{{mainObj[config.keys.mainType].basicInfo}}</a>
-                                <span class="glyphicon glyphicon-arrow-right"></span>
-                            </span>
-                            <span>
-                                <a ui-sref="hasSubType({
-                                    category: category,
-                                    mainType: mainObj[config.keys.mainType].basicInfo,
-                                    subType:  mainObj[config.keys.subType].basicInfo
-                                })">{{mainObj[config.keys.subType].basicInfo}}</a>
-                            </span>
+                    <div ng-repeat="category in orderedData | filter:urlParams.category">
+                        <div ng-repeat="mainType in category.children track by $index | filter:{name:urlParams.mainType}">
+                            <div ng-repeat="mainObj in mainType.children">
+                                <span ng-if="!urlParams.category">
+                                    <a ui-sref="hasCategory({
+                                        category: category.name
+                                    })">{{category.name}}</a>
+                                    <span class="right-arrow">&rarr;</span>
+                                </span>
+                                <span ng-if="!urlParams.mainType">
+                                    <a ui-sref="hasMainType({
+                                        category: category.name,
+                                        mainType: mainType.name
+                                    })">{{mainType.name}}</a>
+                                    <span class="right-arrow">&rarr;</span>
+                                </span>
+                                <span>
+                                    <a ui-sref="hasSubType({
+                                        category: category.name,
+                                        mainType: mainType.name,
+                                        subType:  mainObj[config.keys.subType].basicInfo
+                                    })">{{mainObj[config.keys.subType].basicInfo}}</a>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -50,8 +52,53 @@
                 <div class="col-md-12" ncy-breadcrumb></div>
             </div>
             <div class="row">
-                <div ng-repeat="item in data.parsed | filter:contentFilter">
-                    {{item}}
+                <div ng-repeat="category in orderedData | filter:urlParams.category">
+                    <div ng-repeat="mainType in category.children track by $index" ng-hide="urlParams.mainType && mainType.name !== urlParams.mainType">
+                        <div ng-repeat="mainObj in mainType.children" ng-hide="urlParams.subType && mainObj[config.keys.subType].basicInfo !== urlParams.subType">
+                            <div class="panel panel-default">
+
+                                <div class="panel-heading">
+                                    <span ng-if="!urlParams.category">
+                                        <span>{{category.name}}</span>
+                                        <span class="right-arrow">&rarr;</span>
+                                    </span>
+
+                                    <span ng-if="!urlParams.mainType">
+                                        <span>{{mainType.name}}</span>
+                                        <span class="right-arrow">&rarr;</span>
+                                    </span>
+
+                                    <span>
+                                        <span>{{mainObj[config.keys.subType].basicInfo}}</span>
+                                    </span>
+
+                                    <span class="pull-right label label-default">
+                                        <span>{{mainObj.fileName}}</span>#{{mainObj.lineNumber}}
+                                    </span>
+                                </div>
+
+                                <div class="panel-body">
+                                    <div class="row" ng-if="mainObj.desc">
+                                        <div class="col-md-12">
+                                            {{mainObj.desc.basicInfo}}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <ul class="no-prefix">
+                                                <li ng-repeat="tag in mainObj._props track by $index">
+                                                    <span>@</span><span>{{tag.name}}</span>
+                                                    <span ng-if="tag.value && tag.value.type">({{tag.value.type}})</span>
+                                                    <span ng-if="tag.value.basicInfo">{{tag.value.basicInfo}}</span>
+                                                    <p class="tag-desc-item" ng-if="tag.value.extendedInfo">{{tag.value.extendedInfo}}</p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

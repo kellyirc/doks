@@ -1,3 +1,14 @@
 .nav-container {
     max-height: 650px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+ul.no-prefix {
+    list-style-type: none;
+    padding-left: 10px;
+}
+
+.tag-desc-item {
+    padding-left: 20px;
 }

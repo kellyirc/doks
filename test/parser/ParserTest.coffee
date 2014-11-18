@@ -7,8 +7,8 @@ parser = new Parser
   arrayTags: [
     'param'
   ]
-  defaults:
-    testProp: true
+  #defaults:
+  #  testProp: true
     # will not overwrite if the property exists!
 
     # object format needs to be noted: {basicInfo} etc, so people can specify sane defaults
