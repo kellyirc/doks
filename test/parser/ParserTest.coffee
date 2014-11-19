@@ -7,6 +7,7 @@ parser = new Parser
   arrayTags: [
     'param'
   ]
+  json: "test/samples/*.json"
   #defaults:
   #  testProp: true
     # will not overwrite if the property exists!
@@ -15,7 +16,7 @@ parser = new Parser
 
 console.log "==COFFEE=="
 parser.write()
-console.log parser.parse()
+#console.log parser.parse()
 
 parser = new Parser
   language: "js"

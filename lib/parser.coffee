@@ -39,6 +39,10 @@ class Parser
     @options.theme ?= "bootstrap"
     @options.arrayTags ?= []
     @options.defaults ?= {}
+    @options.json ?= ""
+
+  getOnlyFileName: (filePath) ->
+    filePath.split("\\").pop().split("/").pop()
 
   getFiles: ->
     throw new Error "You have to set a glob first!" if not @options.glob
@@ -87,7 +91,7 @@ class Parser
       lineNumber: commentData.lineNumber
       endLineNumber: commentData.endLineNumber
       filePath: commentData.file
-      fileName: commentData.file.split("\\").pop().split("/").pop()
+      fileName: @getOnlyFileName commentData.file
 
     for arrayTag in @options.arrayTags
       typeOfArray = _.filter results, (result) -> result.name is arrayTag
@@ -151,8 +155,21 @@ class Parser
 
     _.flatten _.values fileMap
 
-  write: (fileLoc = "output.json") ->
+  getJSON: ->
+    files = glob.sync @options.json
 
+    fileMap = {}
+
+    _.each files, (file) =>
+
+      fileContent = fs.readFileSync file,
+        encoding: "UTF-8"
+
+      fileMap[@getOnlyFileName file] = JSON.parse fileContent
+
+    fileMap
+
+  write: (fileLoc = "output.json") ->
     startDate = Date.now()
     parsedData = @parse()
     endDate = Date.now()
@@ -161,6 +178,7 @@ class Parser
       parsed: parsedData
       startTime: startDate
       endTime: endDate
+      arbitrary: @getJSON()
 
     fs.writeFile fileLoc, JSON.stringify data
 

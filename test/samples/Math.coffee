@@ -84,5 +84,12 @@ class MathExample
 
   fun: (a = (->), b) -> a b
 
+  ###*
+    * This is a category full of complex things.
+    * @name Complex
+    * @category Complex
+    * @class MathExample
+  ###
+
 # Editor Note: The general syntax for a tag is:
 # @[tagName] [{tagType}]? [tagBasic] [- tagExtendedDescription]?

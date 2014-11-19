@@ -9,6 +9,26 @@ ul.no-prefix {
     padding-left: 10px;
 }
 
+.more-padding-top {
+    padding-top: 15px;
+}
+
+.tag-simple-properties {
+    font-family: monospace;
+}
+
+.tag-data .tag-data-symbol:before {
+    content: "@";
+}
+
 .tag-desc-item {
     padding-left: 20px;
+}
+
+.searchbox {
+    margin-bottom: 20px;
+}
+
+.searchbox .form-control {
+    height: 36px;
 }
