@@ -1,13 +1,13 @@
 
 Parser = require "../../lib/parser"
 
-parser = new Parser
-  language: "coffee"
-  glob: "test/samples/Math.coffee"
-  arrayTags: [
-    'param'
-  ]
-  json: "test/samples/*.json"
+parser = new Parser config: "#{__dirname}/doks-coffee.json"
+  #language: "coffee"
+  #glob: "test/samples/Math.coffee"
+  #arrayTags: [
+  #  'param'
+  #]
+  #json: "test/samples/*.json"
   #defaults:
   #  testProp: true
     # will not overwrite if the property exists!

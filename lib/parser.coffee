@@ -30,7 +30,13 @@ class Expressions
 class Parser
 
   constructor: (options) ->
+
+    options = @parseNewOptions options.config if options.config
+
     @setOptions options
+
+  parseNewOptions: (file) ->
+    JSON.parse fs.readFileSync file, encoding: "UTF-8"
 
   setOptions: (@options) ->
     @options.language ?= "coffee"
@@ -178,7 +184,8 @@ class Parser
       parsed: parsedData
       startTime: startDate
       endTime: endDate
-      arbitrary: @getJSON()
+
+    data.arbitrary = @getJSON() if @options.json
 
     fs.writeFile fileLoc, JSON.stringify data
 
