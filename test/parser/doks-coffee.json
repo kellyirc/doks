@@ -1,0 +1,8 @@
+{
+  "language": "coffee",
+  "glob": "test/samples/*.coffee",
+  "arrayTags": [
+    "param"
+  ],
+  "json": "test/samples/*.json"
+}
