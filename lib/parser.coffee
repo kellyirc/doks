@@ -34,6 +34,7 @@ class Parser
 
     if options.config
       options = @parseNewOptions options.config
+      return if not options
 
     @setOptions options
 
@@ -187,6 +188,8 @@ class Parser
     ncp "./themes/#{@options.theme}/#{@options.lib}", @options.outputPath, (e) ->
 
   write: (fileLoc = "#{@options.outputPath}/output.json") ->
+    return if not @options
+    
     startDate = Date.now()
     parsedData = @parse()
     endDate = Date.now()
