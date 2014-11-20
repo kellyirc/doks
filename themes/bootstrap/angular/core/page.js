@@ -74,6 +74,14 @@ angular.module('doks', ['mgcrea.ngStrap', 'ui.router', 'ui.select', 'ncy-angular
             return !dok[$scope.config.keys.subType];
         };
 
+        $scope.getLinkFromData = function(dok) {
+            if(!dok) return "";
+            return $scope.config.options.content.sourceLink
+                .split('%lineNumber').join(dok.lineNumber)
+                .split('%endLineNumber').join(dok.endLineNumber)
+                .split('%filePath').join(dok.filePath);
+        };
+
         var cleanList = function(list) {
             return _.uniq(_.compact(list));
         };
@@ -117,7 +125,11 @@ angular.module('doks', ['mgcrea.ngStrap', 'ui.router', 'ui.select', 'ncy-angular
                                         .each(function(value) { value._props = $scope.propsAsArray(value); })
                                         .value()
                                 }, _.findWhere(data, function(item) {
-                                    return item[keys[mainKey]].basicInfo === category && item[keys[subKey]] && item[keys[subKey]].basicInfo === objectKey && item[keys[nameKey]] && item[keys[nameKey]].basicInfo === objectKey;
+                                    return item[keys[mainKey]].basicInfo === category &&
+                                        item[keys[subKey]] &&
+                                        item[keys[subKey]].basicInfo === objectKey &&
+                                        item[keys[nameKey]] &&
+                                        item[keys[nameKey]].basicInfo === objectKey;
                                 }));
                             })
                             .value()

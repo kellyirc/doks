@@ -1,15 +1,24 @@
 ###*
  * @desc This class does math-like things.
  *
- * @class MathExample
- * @type Class
+ * @package Math
+ * @name MathExample
+ * @category Class
+###
+
+###*
+  * This is a category full of complex things.
+  * @name Complex
+  * @category Complex
+  * @package Math
 ###
 
 ###*
  * @desc This is just a dummy class.
  *
- * @class TestClass
- * @type Class
+ * @package Test
+ * @name TestClass
+ * @category Class
 ###
 
 ###*
@@ -18,7 +27,7 @@
  * @name dummy
  * @type Function
  * @category Simple
- * @class TestClass
+ * @package Test
  * @param {Number} a (The first number)
  * @param {Number} b (The second number)
  * @return {Number} a+b (The result of a+b)
@@ -30,7 +39,7 @@ class MathExample
   # * @desc Subtract two numbers.
   # * @name sub
   # * @category Simple
-  # * @class MathExample
+  # * @package Math
   # * @param a (The first number)
   # * @param b (The second number)
   # * @return a+b
@@ -43,7 +52,7 @@ class MathExample
    * @name add
    * @type Function
    * @category Simple
-   * @class MathExample
+   * @package Math
    * @param {Number} a (The first number)
    * @param {Number} b (The second number)
    * @return {Number} a+b (The result of a+b)
@@ -61,7 +70,7 @@ class MathExample
   #*
   #* @name div
   #* @category Complex
-  #* @class MathExample
+  #* @package Math
   #* @param a (The first number)
   #* @param b (The second number)
   #* @return a+b
@@ -74,7 +83,7 @@ class MathExample
    * 3 lines.
    *
    * @name mul
-   * @class MathExample
+   * @package Math
    * @category Complex
    * @param a (The first number)
    * @param b (The second number)
@@ -83,13 +92,6 @@ class MathExample
   mul: (a, b) -> a*b
 
   fun: (a = (->), b) -> a b
-
-  ###*
-    * This is a category full of complex things.
-    * @name Complex
-    * @category Complex
-    * @class MathExample
-  ###
 
 # Editor Note: The general syntax for a tag is:
 # @[tagName] [{tagType}]? [tagBasic] [- tagExtendedDescription]?
