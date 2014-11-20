@@ -189,7 +189,7 @@ class Parser
 
   write: (fileLoc = "#{@options.outputPath}/output.json") ->
     return if not @options
-    
+
     startDate = Date.now()
     parsedData = @parse()
     endDate = Date.now()
