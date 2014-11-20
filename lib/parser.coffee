@@ -186,7 +186,7 @@ class Parser
     fileMap
 
   copyTemplate: ->
-    ncp "./themes/#{@options.theme}/#{@options.lib}", @options.outputPath, (e) ->
+    ncp "./themes/#{@options.theme}-#{@options.lib}", @options.outputPath, (e) ->
 
   write: (fileLoc = "#{@options.outputPath}/output.json") ->
     return if not @options
