@@ -54,6 +54,8 @@ class Parser
     @options.defaults ?= {}
     @options.json ?= ""
     @options.outputPath ?= "doks"
+    @options.outputOnly ?= no
+    @options.themeOnly ?= no
 
   getOnlyFileName: (filePath) ->
     filePath.split("\\").pop().split("/").pop()
@@ -203,8 +205,10 @@ class Parser
     data.arbitrary = @getJSON() if @options.json
 
     mkdirp.sync "#{@options.outputPath}"
-    fs.writeFileSync fileLoc, JSON.stringify data
 
-    @copyTemplate()
+
+    fs.writeFileSync fileLoc, JSON.stringify data if not @options.themeOnly
+
+    @copyTemplate() if not @options.outputOnly
 
 module.exports = exports = Parser
