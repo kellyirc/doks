@@ -3,6 +3,7 @@ _ = require "lodash"
 _.str = require "underscore.string"
 glob = require "glob"
 fs = require "fs"
+ncp = require "ncp"
 
 class Expressions
   @START_COMMENT =
@@ -31,14 +32,18 @@ class Parser
 
   constructor: (options) ->
 
-    options = @parseNewOptions options.config if options.config
+    if options.config
+      options = @parseNewOptions options.config
 
     @setOptions options
 
   parseNewOptions: (file) ->
-    JSON.parse fs.readFileSync file, encoding: "UTF-8"
+    try
+      JSON.parse fs.readFileSync file, encoding: "UTF-8"
+    catch e
+      console.error "FATAL: No doks.json file found (or invalid config)."
 
-  setOptions: (@options) ->
+  setOptions: (@options = {}) ->
     @options.language ?= "coffee"
     @options.glob ?= "**/*.#{@options.language}"
     @options.lib ?= "angular"
@@ -46,12 +51,15 @@ class Parser
     @options.arrayTags ?= []
     @options.defaults ?= {}
     @options.json ?= ""
+    @options.outputPath ?= "doks"
 
   getOnlyFileName: (filePath) ->
     filePath.split("\\").pop().split("/").pop()
 
   getFiles: ->
-    throw new Error "You have to set a glob first!" if not @options.glob
+    if not @options.glob
+      console.error "FATAL: No file glob set."
+      return []
 
     glob.sync @options.glob
 
@@ -175,7 +183,10 @@ class Parser
 
     fileMap
 
-  write: (fileLoc = "output.json") ->
+  copyTemplate: ->
+    ncp "./themes/#{@options.theme}/#{@options.lib}", @options.outputPath, (e) ->
+
+  write: (fileLoc = "#{@options.outputPath}/output.json") ->
     startDate = Date.now()
     parsedData = @parse()
     endDate = Date.now()
@@ -188,5 +199,7 @@ class Parser
     data.arbitrary = @getJSON() if @options.json
 
     fs.writeFile fileLoc, JSON.stringify data
+
+    @copyTemplate()
 
 module.exports = exports = Parser

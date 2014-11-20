@@ -18,12 +18,12 @@ console.log "==COFFEE=="
 parser.write()
 #console.log parser.parse()
 
-parser = new Parser
-  language: "js"
-  glob: "test/samples/Math.js"
-  arrayTags: [
-    'param'
-  ]
+#parser = new Parser
+#  language: "js"
+#  glob: "test/samples/Math.js"
+#  arrayTags: [
+#    'param'
+#  ]
 
-console.log "==JS=="
+#console.log "==JS=="
 #console.log parser.parse()
