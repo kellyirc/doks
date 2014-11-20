@@ -4,6 +4,7 @@ _.str = require "underscore.string"
 glob = require "glob"
 fs = require "fs"
 ncp = require "ncp"
+mkdirp = require "mkdirp"
 
 class Expressions
   @START_COMMENT =
@@ -201,7 +202,8 @@ class Parser
 
     data.arbitrary = @getJSON() if @options.json
 
-    fs.writeFile fileLoc, JSON.stringify data
+    mkdirp.sync "#{@options.outputPath}"
+    fs.writeFileSync fileLoc, JSON.stringify data
 
     @copyTemplate()
 
