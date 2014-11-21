@@ -73,7 +73,7 @@ class Expressions
     * @category Tag
     * @package Regex
   ###
-  @TAG_SPLIT = /@(\w+)\s(?:{(.+)})?\s?(.+?(?=\s\(|\n|$))?\s?(?:\((.+)\))?/g
+  @TAG_SPLIT = /@(\w+)\s?(?:{([^\s|.]+)})?\s?(.+?(?=\s\(|\n|$))?\s?(?:\((.+)\))?/g
 
 ###*
  * @desc This class contains all of the regular expressions used by Parser.
@@ -279,7 +279,7 @@ class Parser
     * @category Function
     * @package TagParser
     * @internal
-    * @param {object} commentData (lineNumber, endLineNumber, file)
+    * @param {object} commentData ({lineNumber, endLineNumber, file})
     * @return {object} The new comment object
   ###
   handleComment: (commentData) ->
@@ -314,6 +314,8 @@ class Parser
         type: tagType
         basicInfo: tagBasic
         extendedInfo: tagExtDesc
+
+      console.log tagData
 
       results.push tagData
 
