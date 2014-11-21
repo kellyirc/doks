@@ -261,7 +261,7 @@ class Parser
       console.error "FATAL: No file glob set."
       return []
 
-    glob.sync "#{root}/#{@options.glob}"
+    glob.sync @options.glob, cwd: root
 
   ###*
     * This function takes a comment object and turns the underlying data into a more digestible format using TAG_SPLIT.
