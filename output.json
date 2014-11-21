@@ -1,0 +1,787 @@
+{
+    "parsed": [
+        {
+            "lineNumber": 10,
+            "endLineNumber": 16,
+            "filePath": "lib/parser.coffee",
+            "fileName": "parser.coffee",
+            "desc": {
+                "name": "desc",
+                "basicInfo": "This class contains all of the regular expressions used by Parser."
+            },
+            "name": {
+                "name": "name",
+                "basicInfo": "Expressions"
+            },
+            "category": {
+                "name": "category",
+                "basicInfo": "Class"
+            },
+            "package": {
+                "name": "package",
+                "basicInfo": "Regex"
+            }
+        },
+        {
+            "lineNumber": 19,
+            "endLineNumber": 27,
+            "filePath": "lib/parser.coffee",
+            "fileName": "parser.coffee",
+            "supports": [
+                {
+                    "name": "supports",
+                    "type": "js"
+                },
+                {
+                    "name": "supports",
+                    "type": "coffee"
+                }
+            ],
+            "desc": {
+                "name": "desc",
+                "basicInfo": "This regular expression is used to determine if a line is a starting character sequence."
+            },
+            "name": {
+                "name": "name",
+                "basicInfo": "START_COMMENT"
+            },
+            "category": {
+                "name": "category",
+                "basicInfo": "Comment"
+            },
+            "package": {
+                "name": "package",
+                "basicInfo": "Regex"
+            }
+        },
+        {
+            "lineNumber": 32,
+            "endLineNumber": 40,
+            "filePath": "lib/parser.coffee",
+            "fileName": "parser.coffee",
+            "supports": [
+                {
+                    "name": "supports",
+                    "type": "js"
+                },
+                {
+                    "name": "supports",
+                    "type": "coffee"
+                }
+            ],
+            "desc": {
+                "name": "desc",
+                "basicInfo": "This regular expression is used to determine if a line is an ending character sequence."
+            },
+            "name": {
+                "name": "name",
+                "basicInfo": "END_COMMENT"
+            },
+            "category": {
+                "name": "category",
+                "basicInfo": "Comment"
+            },
+            "package": {
+                "name": "package",
+                "basicInfo": "Regex"
+            }
+        },
+        {
+            "lineNumber": 45,
+            "endLineNumber": 54,
+            "filePath": "lib/parser.coffee",
+            "fileName": "parser.coffee",
+            "supports": [
+                {
+                    "name": "supports",
+                    "type": "js"
+                },
+                {
+                    "name": "supports",
+                    "type": "coffee"
+                }
+            ],
+            "desc": {
+                "name": "desc",
+                "basicInfo": "This regular expression is used to determine if a character sequence precedes a comment line."
+            },
+            "name": {
+                "name": "name",
+                "basicInfo": "LINE_HEAD_CHAR"
+            },
+            "category": {
+                "name": "category",
+                "basicInfo": "Comment"
+            },
+            "package": {
+                "name": "package",
+                "basicInfo": "Regex"
+            }
+        },
+        {
+            "lineNumber": 59,
+            "endLineNumber": 65,
+            "filePath": "lib/parser.coffee",
+            "fileName": "parser.coffee",
+            "desc": {
+                "name": "desc",
+                "basicInfo": "This regular expression is used to split a file by lines."
+            },
+            "name": {
+                "name": "name",
+                "basicInfo": "LINES"
+            },
+            "category": {
+                "name": "category",
+                "basicInfo": "Line"
+            },
+            "package": {
+                "name": "package",
+                "basicInfo": "Regex"
+            }
+        },
+        {
+            "lineNumber": 68,
+            "endLineNumber": 75,
+            "filePath": "lib/parser.coffee",
+            "fileName": "parser.coffee",
+            "desc": {
+                "name": "desc",
+                "basicInfo": "This regular expression is used to split a comment line into its appropriate tokens",
+                "extendedInfo": "tagName, tagType, tagBasicInfo, tagExtendedInfo"
+            },
+            "name": {
+                "name": "name",
+                "basicInfo": "TAG_SPLIT"
+            },
+            "category": {
+                "name": "category",
+                "basicInfo": "Tag"
+            },
+            "package": {
+                "name": "package",
+                "basicInfo": "Regex"
+            }
+        },
+        {
+            "lineNumber": 78,
+            "endLineNumber": 84,
+            "filePath": "lib/parser.coffee",
+            "fileName": "parser.coffee",
+            "desc": {
+                "name": "desc",
+                "basicInfo": "This class contains all of the regular expressions used by Parser."
+            },
+            "name": {
+                "name": "name",
+                "basicInfo": "Parser"
+            },
+            "category": {
+                "name": "category",
+                "basicInfo": "Class"
+            },
+            "package": {
+                "name": "package",
+                "basicInfo": "TagParser"
+            }
+        },
+        {
+            "lineNumber": 87,
+            "endLineNumber": 94,
+            "filePath": "lib/parser.coffee",
+            "fileName": "parser.coffee",
+            "param": [
+                {
+                    "name": "param",
+                    "type": "object",
+                    "basicInfo": "options"
+                }
+            ],
+            "desc": {
+                "name": "desc",
+                "basicInfo": "This function makes a new parser."
+            },
+            "name": {
+                "name": "name",
+                "basicInfo": "constructor"
+            },
+            "category": {
+                "name": "category",
+                "basicInfo": "Function"
+            },
+            "package": {
+                "name": "package",
+                "basicInfo": "TagParser"
+            }
+        },
+        {
+            "lineNumber": 103,
+            "endLineNumber": 111,
+            "filePath": "lib/parser.coffee",
+            "fileName": "parser.coffee",
+            "param": [
+                {
+                    "name": "param",
+                    "type": "string",
+                    "basicInfo": "file",
+                    "extendedInfo": "The configuration file to parse, defaults to doks.json"
+                }
+            ],
+            "desc": {
+                "name": "desc",
+                "basicInfo": "This function parses options out of a file, formatted similarly to the options object."
+            },
+            "name": {
+                "name": "name",
+                "basicInfo": "parseNewOptions"
+            },
+            "category": {
+                "name": "category",
+                "basicInfo": "Function"
+            },
+            "package": {
+                "name": "package",
+                "basicInfo": "TagParser"
+            },
+            "undefined": {}
+        },
+        {
+            "lineNumber": 118,
+            "endLineNumber": 126,
+            "filePath": "lib/parser.coffee",
+            "fileName": "parser.coffee",
+            "param": [
+                {
+                    "name": "param",
+                    "type": "object",
+                    "basicInfo": "options",
+                    "extendedInfo": "The options object to parse"
+                }
+            ],
+            "desc": {
+                "name": "desc",
+                "basicInfo": "This function sets options on the Parser object."
+            },
+            "name": {
+                "name": "name",
+                "basicInfo": "setOptions"
+            },
+            "category": {
+                "name": "category",
+                "basicInfo": "Function"
+            },
+            "package": {
+                "name": "package",
+                "basicInfo": "TagParser"
+            },
+            "undefined": {}
+        },
+        {
+            "lineNumber": 129,
+            "endLineNumber": 136,
+            "filePath": "lib/parser.coffee",
+            "fileName": "parser.coffee",
+            "desc": {
+                "name": "desc",
+                "basicInfo": "This option determines what language to use."
+            },
+            "name": {
+                "name": "name",
+                "basicInfo": "language"
+            },
+            "category": {
+                "name": "category",
+                "basicInfo": "Option"
+            },
+            "package": {
+                "name": "package",
+                "basicInfo": "TagParser"
+            },
+            "default": {
+                "name": "default",
+                "type": "string",
+                "basicInfo": "\"coffee\""
+            }
+        },
+        {
+            "lineNumber": 139,
+            "endLineNumber": 146,
+            "filePath": "lib/parser.coffee",
+            "fileName": "parser.coffee",
+            "desc": {
+                "name": "desc",
+                "basicInfo": "This option determines which files to glob together when generating doks."
+            },
+            "name": {
+                "name": "name",
+                "basicInfo": "glob"
+            },
+            "category": {
+                "name": "category",
+                "basicInfo": "Option"
+            },
+            "package": {
+                "name": "package",
+                "basicInfo": "TagParser"
+            },
+            "default": {
+                "name": "default",
+                "type": "globstring} \"**\\*.#{options.language",
+                "basicInfo": "\""
+            }
+        },
+        {
+            "lineNumber": 149,
+            "endLineNumber": 156,
+            "filePath": "lib/parser.coffee",
+            "fileName": "parser.coffee",
+            "desc": {
+                "name": "desc",
+                "basicInfo": "This option determines which library to use when choosing a theme."
+            },
+            "name": {
+                "name": "name",
+                "basicInfo": "lib"
+            },
+            "category": {
+                "name": "category",
+                "basicInfo": "Option"
+            },
+            "package": {
+                "name": "package",
+                "basicInfo": "TagParser"
+            },
+            "default": {
+                "name": "default",
+                "type": "string",
+                "basicInfo": "\"angular\""
+            }
+        },
+        {
+            "lineNumber": 159,
+            "endLineNumber": 166,
+            "filePath": "lib/parser.coffee",
+            "fileName": "parser.coffee",
+            "desc": {
+                "name": "desc",
+                "basicInfo": "This option determines which UI framework to use when choosing a theme."
+            },
+            "name": {
+                "name": "name",
+                "basicInfo": "theme"
+            },
+            "category": {
+                "name": "category",
+                "basicInfo": "Option"
+            },
+            "package": {
+                "name": "package",
+                "basicInfo": "TagParser"
+            },
+            "default": {
+                "name": "default",
+                "type": "string",
+                "basicInfo": "\"bootstrap\""
+            }
+        },
+        {
+            "lineNumber": 169,
+            "endLineNumber": 177,
+            "filePath": "lib/parser.coffee",
+            "fileName": "parser.coffee",
+            "desc": {
+                "name": "desc",
+                "basicInfo": "This option lets the parser know what tags happen in multiples. This avoids collisions without too much guessing magic."
+            },
+            "name": {
+                "name": "name",
+                "basicInfo": "arrayTags"
+            },
+            "category": {
+                "name": "category",
+                "basicInfo": "Option"
+            },
+            "package": {
+                "name": "package",
+                "basicInfo": "TagParser"
+            },
+            "default": {
+                "name": "default",
+                "type": "array",
+                "basicInfo": "[]"
+            }
+        },
+        {
+            "lineNumber": 180,
+            "endLineNumber": 188,
+            "filePath": "lib/parser.coffee",
+            "fileName": "parser.coffee",
+            "desc": {
+                "name": "desc",
+                "basicInfo": "This option lets the parser know what a tags default value should be if it isn't set. Beware, this will be set on every comment object being put through the parser."
+            },
+            "name": {
+                "name": "name",
+                "basicInfo": "defaults"
+            },
+            "category": {
+                "name": "category",
+                "basicInfo": "Option"
+            },
+            "package": {
+                "name": "package",
+                "basicInfo": "TagParser"
+            },
+            "default": {
+                "name": "default",
+                "type": "object} {"
+            }
+        },
+        {
+            "lineNumber": 191,
+            "endLineNumber": 199,
+            "filePath": "lib/parser.coffee",
+            "fileName": "parser.coffee",
+            "desc": {
+                "name": "desc",
+                "basicInfo": "This option tells the parser to attach arbitrary JSON to the external output. Useful if you have some arbitrary JSON files you want to display in your documentation."
+            },
+            "name": {
+                "name": "name",
+                "basicInfo": "json"
+            },
+            "category": {
+                "name": "category",
+                "basicInfo": "Option"
+            },
+            "package": {
+                "name": "package",
+                "basicInfo": "TagParser"
+            },
+            "default": {
+                "name": "default",
+                "type": "globstring",
+                "basicInfo": "\"\""
+            }
+        },
+        {
+            "lineNumber": 202,
+            "endLineNumber": 209,
+            "filePath": "lib/parser.coffee",
+            "fileName": "parser.coffee",
+            "desc": {
+                "name": "desc",
+                "basicInfo": "This option determines where the resulting theme and parser output should be put."
+            },
+            "name": {
+                "name": "name",
+                "basicInfo": "outputPath"
+            },
+            "category": {
+                "name": "category",
+                "basicInfo": "Option"
+            },
+            "package": {
+                "name": "package",
+                "basicInfo": "TagParser"
+            },
+            "default": {
+                "name": "default",
+                "type": "string",
+                "basicInfo": "\"doks\""
+            }
+        },
+        {
+            "lineNumber": 212,
+            "endLineNumber": 220,
+            "filePath": "lib/parser.coffee",
+            "fileName": "parser.coffee",
+            "desc": {
+                "name": "desc",
+                "basicInfo": "This option makes it so only the parser output is placed in the output directory. If both this and themeOnly are set to true, neither will output any data."
+            },
+            "name": {
+                "name": "name",
+                "basicInfo": "outputOnly"
+            },
+            "category": {
+                "name": "category",
+                "basicInfo": "Option"
+            },
+            "package": {
+                "name": "package",
+                "basicInfo": "TagParser"
+            },
+            "default": {
+                "name": "default",
+                "type": "boolean",
+                "basicInfo": "false"
+            }
+        },
+        {
+            "lineNumber": 223,
+            "endLineNumber": 231,
+            "filePath": "lib/parser.coffee",
+            "fileName": "parser.coffee",
+            "desc": {
+                "name": "desc",
+                "basicInfo": "This option makes it so only the theme is placed in the output directory. If both this and themeOnly are set to true, neither will output any data."
+            },
+            "name": {
+                "name": "name",
+                "basicInfo": "themeOnly"
+            },
+            "category": {
+                "name": "category",
+                "basicInfo": "Option"
+            },
+            "package": {
+                "name": "package",
+                "basicInfo": "TagParser"
+            },
+            "default": {
+                "name": "default",
+                "type": "boolean",
+                "basicInfo": "false"
+            }
+        },
+        {
+            "lineNumber": 234,
+            "endLineNumber": 241,
+            "filePath": "lib/parser.coffee",
+            "fileName": "parser.coffee",
+            "desc": {
+                "name": "desc",
+                "basicInfo": "This option allows for overriding template variables."
+            },
+            "name": {
+                "name": "name",
+                "basicInfo": "templateOptions"
+            },
+            "category": {
+                "name": "category",
+                "basicInfo": "Option"
+            },
+            "package": {
+                "name": "package",
+                "basicInfo": "TagParser"
+            },
+            "default": {
+                "name": "default",
+                "type": "object} {"
+            }
+        },
+        {
+            "lineNumber": 244,
+            "endLineNumber": 253,
+            "filePath": "lib/parser.coffee",
+            "fileName": "parser.coffee",
+            "param": [
+                {
+                    "name": "param",
+                    "type": "string",
+                    "basicInfo": "filePath",
+                    "extendedInfo": "The filePath to split apart"
+                }
+            ],
+            "desc": {
+                "name": "desc",
+                "basicInfo": "This function turns a file path into just a file name."
+            },
+            "name": {
+                "name": "name",
+                "basicInfo": "getOnlyFileName"
+            },
+            "category": {
+                "name": "category",
+                "basicInfo": "Function"
+            },
+            "package": {
+                "name": "package",
+                "basicInfo": "TagParser"
+            },
+            "undefined": {},
+            "return": {
+                "name": "return",
+                "type": "string",
+                "basicInfo": "The file name"
+            }
+        },
+        {
+            "lineNumber": 257,
+            "endLineNumber": 266,
+            "filePath": "lib/parser.coffee",
+            "fileName": "parser.coffee",
+            "desc": {
+                "name": "desc",
+                "basicInfo": "This function returns a list of files based on options.glob."
+            },
+            "name": {
+                "name": "name",
+                "basicInfo": "getFiles"
+            },
+            "category": {
+                "name": "category",
+                "basicInfo": "Function"
+            },
+            "package": {
+                "name": "package",
+                "basicInfo": "TagParser"
+            },
+            "undefined": {},
+            "return": {
+                "name": "return",
+                "type": "array",
+                "basicInfo": "The files found in the given glob"
+            }
+        },
+        {
+            "lineNumber": 274,
+            "endLineNumber": 284,
+            "filePath": "lib/parser.coffee",
+            "fileName": "parser.coffee",
+            "param": [
+                {
+                    "name": "param",
+                    "type": "object} commentData ({lineNumber, endLineNumber, file",
+                    "basicInfo": ")"
+                }
+            ],
+            "desc": {
+                "name": "desc",
+                "basicInfo": "This function takes a comment object and turns the underlying data into a more digestible format using TAG_SPLIT. It takes into account options like defaults and arrayTags to better format the resulting data."
+            },
+            "name": {
+                "name": "name",
+                "basicInfo": "handleComment"
+            },
+            "category": {
+                "name": "category",
+                "basicInfo": "Function"
+            },
+            "package": {
+                "name": "package",
+                "basicInfo": "TagParser"
+            },
+            "undefined": {},
+            "return": {
+                "name": "return",
+                "type": "object",
+                "basicInfo": "The new comment object"
+            }
+        },
+        {
+            "lineNumber": 343,
+            "endLineNumber": 353,
+            "filePath": "lib/parser.coffee",
+            "fileName": "parser.coffee",
+            "desc": {
+                "name": "desc",
+                "basicInfo": "This function parses a file, line by line, and gathers the appropriate data to create a basic comment object",
+                "extendedInfo": "including line numbers). Additionally, if you only wanted comment data (and are using this tool programmatically"
+            },
+            "name": {
+                "name": "name",
+                "basicInfo": "parse"
+            },
+            "category": {
+                "name": "category",
+                "basicInfo": "Function"
+            },
+            "package": {
+                "name": "package",
+                "basicInfo": "TagParser"
+            },
+            "throws": {
+                "name": "throws",
+                "type": "Error",
+                "basicInfo": "if a language is not set"
+            },
+            "return": {
+                "name": "return",
+                "type": "array",
+                "basicInfo": "An unsorted array of comment data"
+            }
+        },
+        {
+            "lineNumber": 402,
+            "endLineNumber": 409,
+            "filePath": "lib/parser.coffee",
+            "fileName": "parser.coffee",
+            "desc": {
+                "name": "desc",
+                "basicInfo": "This function takes the options.json glob and gathers all of the specified JSON files into an object."
+            },
+            "name": {
+                "name": "name",
+                "basicInfo": "getJSON"
+            },
+            "category": {
+                "name": "category",
+                "basicInfo": "Function"
+            },
+            "package": {
+                "name": "package",
+                "basicInfo": "TagParser"
+            },
+            "return": {
+                "name": "return",
+                "type": "object",
+                "basicInfo": "A hash of each JSON file mapped to its contents, as an object"
+            }
+        },
+        {
+            "lineNumber": 424,
+            "endLineNumber": 431,
+            "filePath": "lib/parser.coffee",
+            "fileName": "parser.coffee",
+            "desc": {
+                "name": "desc",
+                "basicInfo": "This function copies the specified template to the output directory specified. It also handles merging any template options."
+            },
+            "name": {
+                "name": "name",
+                "basicInfo": "copyTemplate"
+            },
+            "category": {
+                "name": "category",
+                "basicInfo": "Function"
+            },
+            "package": {
+                "name": "package",
+                "basicInfo": "TagParser"
+            }
+        },
+        {
+            "lineNumber": 441,
+            "endLineNumber": 448,
+            "filePath": "lib/parser.coffee",
+            "fileName": "parser.coffee",
+            "desc": {
+                "name": "desc",
+                "basicInfo": "This function aggregates all possible data",
+                "extendedInfo": "parse times, git metadata, JSON, parsed comment data, theme-related options"
+            },
+            "name": {
+                "name": "name",
+                "basicInfo": "write"
+            },
+            "category": {
+                "name": "category",
+                "basicInfo": "Function"
+            },
+            "package": {
+                "name": "package",
+                "basicInfo": "TagParser"
+            }
+        }
+    ],
+    "startTime": 1416536574763,
+    "endTime": 1416536574770,
+    "git": {
+        "short": "d4c2ae3",
+        "long": "d4c2ae324a25e744cac598fa1b1fe30af55c105b",
+        "branch": "master",
+        "tag": "0.2.0"
+    }
+}

@@ -1,8 +1,0 @@
-{
-  "language": "coffee",
-  "glob": "lib/parser.coffee",
-  "arrayTags": [
-    "supports",
-    "param"
-  ]
-}

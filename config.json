@@ -1,0 +1,22 @@
+{
+    "keys": {
+        "category": "package",
+        "mainType": "category",
+        "subType": "name"
+    },
+    "options": {
+        "page": {
+            "pageName": "Doks",
+            "favicon": "favicon.ico"
+        },
+        "nav": {
+            "categorySeparate": false,
+            "mainTypeRight": false,
+            "useSearchBar": true
+        },
+        "content": {
+            "showFileLabels": true,
+            "sourceLink": "https://github.com/kellyirc/doks/tree/master/%filePath#L%lineNumber-L%endLineNumber"
+        }
+    }
+}
