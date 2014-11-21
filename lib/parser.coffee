@@ -7,6 +7,8 @@ ncp = require "ncp"
 mkdirp = require "mkdirp"
 git = require "git-rev-sync"
 
+root = process.cwd()
+
 ###*
  * @desc This class contains all of the regular expressions used by Parser.
  *
@@ -259,7 +261,7 @@ class Parser
       console.error "FATAL: No file glob set."
       return []
 
-    glob.sync @options.glob
+    glob.sync "#{root}/#{@options.glob}"
 
   ###*
     * This function takes a comment object and turns the underlying data into a more digestible format using TAG_SPLIT.
@@ -420,13 +422,13 @@ class Parser
     * @package TagParser
   ###
   copyTemplate: ->
-    ncp "./themes/#{@options.theme}", @options.outputPath, =>
-      fileContent = JSON.parse fs.readFileSync "#{@options.outputPath}/config.json",
+    ncp "#{__dirname}/../themes/#{@options.theme}", "#{root}/#{@options.outputPath}", =>
+      fileContent = JSON.parse fs.readFileSync "#{root}/#{@options.outputPath}/config.json",
         encoding: "UTF-8"
 
       fileContent.options = _.merge fileContent.options, @options.templateOptions
 
-      fs.writeFileSync "#{@options.outputPath}/config.json", JSON.stringify fileContent, null, 4
+      fs.writeFileSync "#{root}/#{@options.outputPath}/config.json", JSON.stringify fileContent, null, 4
 
   ###*
     * This function aggregates all possible data (parse times, git metadata, JSON, parsed comment data, theme-related options)
@@ -436,7 +438,7 @@ class Parser
     * @category Function
     * @package TagParser
   ###
-  write: (fileLoc = "#{@options.outputPath}/output.json") ->
+  write: (fileLoc = "#{root}/#{@options.outputPath}/output.json") ->
     return if not @options
 
     startDate = Date.now()
@@ -455,7 +457,7 @@ class Parser
 
     data.arbitrary = @getJSON() if @options.json
 
-    mkdirp.sync "#{@options.outputPath}"
+    mkdirp.sync "#{root}/#{@options.outputPath}"
 
     fs.writeFileSync fileLoc, JSON.stringify data, null, 4 if not @options.themeOnly
 
