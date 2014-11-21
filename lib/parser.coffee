@@ -147,24 +147,14 @@ class Parser
     @options.glob ?= "**/*.#{@options.language}"
 
     ###*
-      * This option determines which library to use when choosing a theme.
-      *
-      * @name lib
-      * @category Option
-      * @package TagParser
-      * @default {string} "angular"
-    ###
-    @options.lib ?= "angular"
-
-    ###*
       * This option determines which UI framework to use when choosing a theme.
       *
       * @name theme
       * @category Option
       * @package TagParser
-      * @default {string} "bootstrap"
+      * @default {string} "bootstrap-angular"
     ###
-    @options.theme ?= "bootstrap"
+    @options.theme ?= "bootstrap-angular"
 
     ###*
       * This option lets the parser know what tags happen in multiples.
@@ -430,7 +420,7 @@ class Parser
     * @package TagParser
   ###
   copyTemplate: ->
-    ncp "./themes/#{@options.theme}-#{@options.lib}", @options.outputPath, =>
+    ncp "./themes/#{@options.theme}", @options.outputPath, =>
       fileContent = JSON.parse fs.readFileSync "#{@options.outputPath}/config.json",
         encoding: "UTF-8"
 

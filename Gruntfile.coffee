@@ -3,7 +3,6 @@ module.exports = (grunt) ->
   require('load-grunt-tasks')(grunt)
 
   theme = grunt.option('theme') or 'bootstrap'
-  lib = grunt.option('lib') or 'angular'
 
   grunt.initConfig
     connect:
@@ -18,7 +17,7 @@ module.exports = (grunt) ->
 
     watch:
       dev:
-        files: ["themes/#{theme}-#{lib}/**/*", "doks/**/*"]
+        files: ["themes/#{theme}/**/*", "doks/**/*"]
         tasks: ['build']
         options:
           livereload: yes
