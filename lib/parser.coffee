@@ -6,31 +6,91 @@ fs = require "fs"
 ncp = require "ncp"
 mkdirp = require "mkdirp"
 
+###*
+ * @desc This class contains all of the regular expressions used by Parser.
+ *
+ * @name Regex
+ * @category Class
+ * @package Expressions
+###
 class Expressions
+
+  ###*
+    * This regular expression is used to determine
+    * if a line is a starting character sequence.
+    * @name START_COMMENT
+    * @category Comment
+    * @package Expressions
+    * @supports {js}
+    * @supports {coffee}
+  ###
   @START_COMMENT =
     js: /^\s*\/\*\*/,
     coffee: /^\s*###\*/
 
+  ###*
+    * This regular expression is used to determine
+    * if a line is an ending character sequence.
+    * @name END_COMMENT
+    * @category Comment
+    * @package Expressions
+    * @supports {js}
+    * @supports {coffee}
+  ###
   @END_COMMENT =
     js: /\*\/\s*$/,
     coffee: /###\s*$/
 
+  ###*
+    * This regular expression is used to determine
+    * if a character sequence precedes a comment line.
+    *
+    * @name LINE_HEAD_CHAR
+    * @category Comment
+    * @package Expressions
+    * @supports {js}
+    * @supports {coffee}
+  ###
   @LINE_HEAD_CHAR =
     js: /^\s*\*/,
     coffee: /^\s*#/
 
+  ###*
+    * This regular expression is used to split a file by lines.
+    *
+    * @name LINES
+    * @category Line
+    * @package Expressions
+  ###
   @LINES = /\r\n|\n/
 
-  @GLOBAL_LINES = /\r\n|\n/g
-
-  @LINE_HEAD_CHAR =
-    js: /^\s*\*/,
-    coffee: /^\s*#/
-
+  ###*
+    * This regular expression is used to split a comment line
+    * into its appropriate tokens (tagName, tagType, tagBasicInfo, tagExtendedInfo).
+    *
+    * @name TAG_SPLIT
+    * @category Tag
+    * @package Expressions
+  ###
   @TAG_SPLIT = /@(\w+)\s(?:{(.+)})?\s?(.+?(?=\s\(|\n|$))?\s?(?:\((.+)\))?/g
 
+###*
+ * @desc This class contains all of the regular expressions used by Parser.
+ *
+ * @name Parser
+ * @category Class
+ * @package TagParser
+###
 class Parser
 
+  ###*
+    * This function makes a new parser.
+    *
+    * @name constructor
+    * @category Function
+    * @package TagParser
+    * @param {object} options
+  ###
   constructor: (options) ->
 
     if options.config
@@ -39,27 +99,160 @@ class Parser
 
     @setOptions options
 
+  ###*
+    * This function parses options out of a file, formatted similarly to the options object.
+    *
+    * @name parseNewOptions
+    * @category Function
+    * @package TagParser
+    * @internal
+    * @param {string} file (The configuration file to parse, defaults to doks.json)
+  ###
   parseNewOptions: (file) ->
     try
       JSON.parse fs.readFileSync file, encoding: "UTF-8"
     catch e
       console.error "FATAL: No doks.json file found (or invalid config)."
 
+  ###*
+    * This function sets options on the Parser object.
+    *
+    * @name setOptions
+    * @category Function
+    * @package TagParser
+    * @internal
+    * @param {object} options (The options object to parse)
+  ###
   setOptions: (@options = {}) ->
+
+    ###*
+      * This option determines what language to use.
+      *
+      * @name language
+      * @category Option
+      * @package TagParser
+      * @default {string} "coffee"
+    ###
     @options.language ?= "coffee"
+
+    ###*
+      * This option determines which files to glob together when generating doks.
+      *
+      * @name glob
+      * @category Option
+      * @package TagParser
+      * @default {globstring} "**/*.#{@options.language}"
+    ###
     @options.glob ?= "**/*.#{@options.language}"
+
+    ###*
+      * This option determines which library to use when choosing a theme.
+      *
+      * @name lib
+      * @category Option
+      * @package TagParser
+      * @default {string} "angular"
+    ###
     @options.lib ?= "angular"
+
+    ###*
+      * This option determines which UI framework to use when choosing a theme.
+      *
+      * @name theme
+      * @category Option
+      * @package TagParser
+      * @default {string} "bootstrap"
+    ###
     @options.theme ?= "bootstrap"
+
+    ###*
+      * This option lets the parser know what tags happen in multiples.
+      * This avoids collisions without too much guessing magic.
+      *
+      * @name arrayTags
+      * @category Option
+      * @package TagParser
+      * @default {array} []
+    ###
     @options.arrayTags ?= []
+
+    ###*
+      * This option lets the parser know what a tags default value should be if it isn't set.
+      * Beware, this will be set on every comment object being put through the parser.
+      *
+      * @name defaults
+      * @category Option
+      * @package TagParser
+      * @default {object} {}
+    ###
     @options.defaults ?= {}
+
+    ###*
+      * This option tells the parser to attach arbitrary JSON to the external output.
+      * Useful if you have some arbitrary JSON files you want to display in your documentation.
+      *
+      * @name json
+      * @category Option
+      * @package TagParser
+      * @default {globstring} ""
+    ###
     @options.json ?= ""
+
+    ###*
+      * This option determines where the resulting theme and parser output should be put.
+      *
+      * @name outputPath
+      * @category Option
+      * @package TagParser
+      * @default {string} "doks"
+    ###
     @options.outputPath ?= "doks"
+
+    ###*
+      * This option makes it so only the parser output is placed in the output directory.
+      * If both this and themeOnly are set to true, neither will output any data.
+      *
+      * @name outputOnly
+      * @category Option
+      * @package TagParser
+      * @default {boolean} false
+    ###
     @options.outputOnly ?= no
+
+    ###*
+      * This option makes it so only the theme is placed in the output directory.
+      * If both this and themeOnly are set to true, neither will output any data.
+      *
+      * @name themeOnly
+      * @category Option
+      * @package TagParser
+      * @default {boolean} false
+    ###
     @options.themeOnly ?= no
 
+  ###*
+    * This function turns a file path into just a file name.
+    *
+    * @name getOnlyFileName
+    * @category Function
+    * @package TagParser
+    * @internal
+    * @param {string} filePath (The filePath to split apart)
+    * @return {string} The file name
+  ###
   getOnlyFileName: (filePath) ->
     filePath.split("\\").pop().split("/").pop()
 
+  ###*
+    * This function returns a list of files based on options.glob.
+    *
+    * @name getFiles
+    * @category Function
+    * @package TagParser
+    * @internal
+    * @return {array} [] (If there is no glob set)
+    * @return {array} The files found in the given glob
+  ###
   getFiles: ->
     if not @options.glob
       console.error "FATAL: No file glob set."
@@ -67,6 +260,17 @@ class Parser
 
     glob.sync @options.glob
 
+  ###*
+    * This function takes a comment object and turns the underlying data into a more digestible format using TAG_SPLIT.
+    * It takes into account options like defaults and arrayTags to better format the resulting data.
+    *
+    * @name handleComment
+    * @category Function
+    * @package TagParser
+    * @internal
+    * @param {object} commentData ({lineNumber, endLineNumber, file})
+    * @return {object} The new comment object
+  ###
   handleComment: (commentData) ->
     lines = commentData.comment.split Expressions.LINES
     results = []
@@ -125,6 +329,17 @@ class Parser
 
     resultObj
 
+  ###*
+    * This function parses a file, line by line, and gathers the appropriate data to create a basic comment object
+    * (including line numbers). Additionally, if you only wanted comment data (and are using this tool programmatically),
+    * you could use this instead of options.outputOnly.
+    *
+    * @name parse
+    * @category Function
+    * @package TagParser
+    * @throws {Error} if a language is not set
+    * @return {array} An unsorted array of comment data
+  ###
   parse: ->
     throw new Error "You have to set a language first!" if not @options.language
 
@@ -173,6 +388,14 @@ class Parser
 
     _.flatten _.values fileMap
 
+  ###*
+    * This function takes the options.json glob and gathers all of the specified JSON files into an object.
+    *
+    * @name getJSON
+    * @category Function
+    * @package TagParser
+    * @return {object} A hash of each JSON file mapped to its contents, as an object
+  ###
   getJSON: ->
     files = glob.sync @options.json
 
@@ -187,9 +410,24 @@ class Parser
 
     fileMap
 
+  ###*
+    * This function copies the specified template to the output directory specified.
+    *
+    * @name copyTemplate
+    * @category Function
+    * @package TagParser
+  ###
   copyTemplate: ->
-    ncp "./themes/#{@options.theme}-#{@options.lib}", @options.outputPath, (e) ->
+    ncp "./themes/#{@options.theme}-#{@options.lib}", @options.outputPath, ->
 
+  ###*
+    * This function aggregates all possible data (parse times, JSON, parsed comment data, theme-related options)
+    * and handles all of the writing. All data is written to outputPath/output.json.
+    *
+    * @name write
+    * @category Function
+    * @package TagParser
+  ###
   write: (fileLoc = "#{@options.outputPath}/output.json") ->
     return if not @options
 
@@ -205,7 +443,6 @@ class Parser
     data.arbitrary = @getJSON() if @options.json
 
     mkdirp.sync "#{@options.outputPath}"
-
 
     fs.writeFileSync fileLoc, JSON.stringify data if not @options.themeOnly
 
