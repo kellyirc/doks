@@ -7,7 +7,8 @@
   "options": {
     "page": {
       "pageName": "Doks",
-      "favicon": "favicon.ico"
+      "favicon": "favicon.ico",
+      "showGitHubBadges": true
     },
     "nav": {
       "categorySeparate": false,
