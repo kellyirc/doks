@@ -41,6 +41,7 @@ favicon.ico **
 index.html *
 ```
 * These items are required
+* 
 ** This should be the doks favicon by default.
 
 A config.json should be structured like so:
