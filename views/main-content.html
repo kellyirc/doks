@@ -16,6 +16,16 @@
                     <a ui-sref="hasCategory({category: category})">{{category}}</a>
                 </li>
             </ul>
+            <ul class="nav navbar-nav navbar-right" ng-if="config.options.page.showGitHubBadges">
+                <li>
+                    <a><iframe src="http://ghbtns.com/github-btn.html?user=kellyirc&repo=doks&type=watch&count=true"
+                               allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe></a>
+                </li>
+                <li>
+                    <a><iframe src="http://ghbtns.com/github-btn.html?user=kellyirc&repo=doks&type=fork&count=true"
+                            allowtransparency="true" frameborder="0" scrolling="0" width="95" height="20"></iframe></a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>

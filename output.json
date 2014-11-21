@@ -789,12 +789,12 @@
             }
         }
     ],
-    "startTime": 1416551425485,
-    "endTime": 1416551425492,
+    "startTime": 1416552736859,
+    "endTime": 1416552736867,
     "git": {
-        "short": "8504397",
-        "long": "850439765e85926956a06c1e29dd83f9a9fc419a",
+        "short": "dbc9857",
+        "long": "dbc98572446ea98c2d995d1676c4243ee895b52b",
         "branch": "master",
-        "tag": "0.2.0"
+        "tag": "0.2.1"
     }
 }
