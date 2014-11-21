@@ -27,6 +27,7 @@ ul.no-prefix {
 
 .searchbox {
     margin-bottom: 20px;
+    z-index: 20;
 }
 
 .searchbox .form-control {

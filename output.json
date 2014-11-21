@@ -243,7 +243,9 @@
                 "name": "package",
                 "basicInfo": "TagParser"
             },
-            "undefined": {}
+            "internal": {
+                "name": "internal"
+            }
         },
         {
             "lineNumber": 118,
@@ -274,7 +276,9 @@
                 "name": "package",
                 "basicInfo": "TagParser"
             },
-            "undefined": {}
+            "internal": {
+                "name": "internal"
+            }
         },
         {
             "lineNumber": 129,
@@ -326,8 +330,8 @@
             },
             "default": {
                 "name": "default",
-                "type": "globstring} \"**\\*.#{options.language",
-                "basicInfo": "\""
+                "type": "globstring",
+                "basicInfo": "\"**\\*.#{options.language}\""
             }
         },
         {
@@ -434,7 +438,8 @@
             },
             "default": {
                 "name": "default",
-                "type": "object} {"
+                "type": "object",
+                "basicInfo": "{}"
             }
         },
         {
@@ -568,7 +573,8 @@
             },
             "default": {
                 "name": "default",
-                "type": "object} {"
+                "type": "object",
+                "basicInfo": "{}"
             }
         },
         {
@@ -600,7 +606,9 @@
                 "name": "package",
                 "basicInfo": "TagParser"
             },
-            "undefined": {},
+            "internal": {
+                "name": "internal"
+            },
             "return": {
                 "name": "return",
                 "type": "string",
@@ -628,7 +636,9 @@
                 "name": "package",
                 "basicInfo": "TagParser"
             },
-            "undefined": {},
+            "internal": {
+                "name": "internal"
+            },
             "return": {
                 "name": "return",
                 "type": "array",
@@ -643,8 +653,9 @@
             "param": [
                 {
                     "name": "param",
-                    "type": "object} commentData ({lineNumber, endLineNumber, file",
-                    "basicInfo": ")"
+                    "type": "object",
+                    "basicInfo": "commentData",
+                    "extendedInfo": "{lineNumber, endLineNumber, file}"
                 }
             ],
             "desc": {
@@ -663,7 +674,9 @@
                 "name": "package",
                 "basicInfo": "TagParser"
             },
-            "undefined": {},
+            "internal": {
+                "name": "internal"
+            },
             "return": {
                 "name": "return",
                 "type": "object",
@@ -776,11 +789,11 @@
             }
         }
     ],
-    "startTime": 1416536574763,
-    "endTime": 1416536574770,
+    "startTime": 1416551425485,
+    "endTime": 1416551425492,
     "git": {
-        "short": "d4c2ae3",
-        "long": "d4c2ae324a25e744cac598fa1b1fe30af55c105b",
+        "short": "8504397",
+        "long": "850439765e85926956a06c1e29dd83f9a9fc419a",
         "branch": "master",
         "tag": "0.2.0"
     }
