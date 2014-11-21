@@ -36,13 +36,10 @@ Themes should generally have a similar structure, like so:
 core
 vendor
 views
-config.json *
-favicon.ico **
-index.html *
+config.json   // this is required
+favicon.ico   // this should be the default doks favicon.ico
+index.html    // this is required
 ```
-* These items are required
-* 
-** This should be the doks favicon by default.
 
 A config.json should be structured like so:
 ```json
