@@ -18,7 +18,7 @@ module.exports = (grunt) ->
 
     watch:
       dev:
-        files: ["themes/#{theme}/#{lib}/**/*"]
+        files: ["themes/#{theme}-#{lib}/**/*", "doks/**/*"]
         tasks: ['build']
         options:
           livereload: yes

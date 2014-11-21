@@ -315,8 +315,6 @@ class Parser
         basicInfo: tagBasic
         extendedInfo: tagExtDesc
 
-      console.log tagData
-
       results.push tagData
 
     addObjectToResult line.split Expressions.TAG_SPLIT for line in lines
