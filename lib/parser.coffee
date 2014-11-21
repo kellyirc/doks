@@ -279,7 +279,7 @@ class Parser
     * @category Function
     * @package TagParser
     * @internal
-    * @param {object} commentData ({lineNumber, endLineNumber, file})
+    * @param {object} commentData (lineNumber, endLineNumber, file)
     * @return {object} The new comment object
   ###
   handleComment: (commentData) ->
