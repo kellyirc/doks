@@ -5,13 +5,14 @@ glob = require "glob"
 fs = require "fs"
 ncp = require "ncp"
 mkdirp = require "mkdirp"
+git = require "git-rev-sync"
 
 ###*
  * @desc This class contains all of the regular expressions used by Parser.
  *
- * @name Regex
+ * @name Expressions
  * @category Class
- * @package Expressions
+ * @package Regex
 ###
 class Expressions
 
@@ -20,7 +21,7 @@ class Expressions
     * if a line is a starting character sequence.
     * @name START_COMMENT
     * @category Comment
-    * @package Expressions
+    * @package Regex
     * @supports {js}
     * @supports {coffee}
   ###
@@ -33,7 +34,7 @@ class Expressions
     * if a line is an ending character sequence.
     * @name END_COMMENT
     * @category Comment
-    * @package Expressions
+    * @package Regex
     * @supports {js}
     * @supports {coffee}
   ###
@@ -47,7 +48,7 @@ class Expressions
     *
     * @name LINE_HEAD_CHAR
     * @category Comment
-    * @package Expressions
+    * @package Regex
     * @supports {js}
     * @supports {coffee}
   ###
@@ -60,7 +61,7 @@ class Expressions
     *
     * @name LINES
     * @category Line
-    * @package Expressions
+    * @package Regex
   ###
   @LINES = /\r\n|\n/
 
@@ -70,7 +71,7 @@ class Expressions
     *
     * @name TAG_SPLIT
     * @category Tag
-    * @package Expressions
+    * @package Regex
   ###
   @TAG_SPLIT = /@(\w+)\s(?:{(.+)})?\s?(.+?(?=\s\(|\n|$))?\s?(?:\((.+)\))?/g
 
@@ -112,7 +113,7 @@ class Parser
     try
       JSON.parse fs.readFileSync file, encoding: "UTF-8"
     catch e
-      console.error "FATAL: No doks.json file found (or invalid config)."
+      console.error "FATAL: No doks.json file found (or invalid config): #{e.stack}"
 
   ###*
     * This function sets options on the Parser object.
@@ -141,7 +142,7 @@ class Parser
       * @name glob
       * @category Option
       * @package TagParser
-      * @default {globstring} "**/*.#{@options.language}"
+      * @default {globstring} "**\*.#{options.language}"
     ###
     @options.glob ?= "**/*.#{@options.language}"
 
@@ -229,6 +230,16 @@ class Parser
       * @default {boolean} false
     ###
     @options.themeOnly ?= no
+
+    ###*
+      * This option allows for overriding template variables.
+      *
+      * @name templateOptions
+      * @category Option
+      * @package TagParser
+      * @default {object} {}
+    ###
+    @options.templateOptions ?= {}
 
   ###*
     * This function turns a file path into just a file name.
@@ -412,16 +423,23 @@ class Parser
 
   ###*
     * This function copies the specified template to the output directory specified.
+    * It also handles merging any template options.
     *
     * @name copyTemplate
     * @category Function
     * @package TagParser
   ###
   copyTemplate: ->
-    ncp "./themes/#{@options.theme}-#{@options.lib}", @options.outputPath, ->
+    ncp "./themes/#{@options.theme}-#{@options.lib}", @options.outputPath, =>
+      fileContent = JSON.parse fs.readFileSync "#{@options.outputPath}/config.json",
+        encoding: "UTF-8"
+
+      fileContent.options = _.merge fileContent.options, @options.templateOptions
+
+      fs.writeFileSync "#{@options.outputPath}/config.json", JSON.stringify fileContent, null, 4
 
   ###*
-    * This function aggregates all possible data (parse times, JSON, parsed comment data, theme-related options)
+    * This function aggregates all possible data (parse times, git metadata, JSON, parsed comment data, theme-related options)
     * and handles all of the writing. All data is written to outputPath/output.json.
     *
     * @name write
@@ -439,12 +457,17 @@ class Parser
       parsed: parsedData
       startTime: startDate
       endTime: endDate
+      git:
+        short: git.short()
+        long: git.long()
+        branch: git.branch()
+        tag: git.tag()
 
     data.arbitrary = @getJSON() if @options.json
 
     mkdirp.sync "#{@options.outputPath}"
 
-    fs.writeFileSync fileLoc, JSON.stringify data if not @options.themeOnly
+    fs.writeFileSync fileLoc, JSON.stringify data, null, 4 if not @options.themeOnly
 
     @copyTemplate() if not @options.outputOnly
 
