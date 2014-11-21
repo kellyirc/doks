@@ -1,6 +1,6 @@
 {
   "name": "doks",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A configurable, bring-your-own-template documentation generator aimed for user and developer documentation based on source code.",
   "main": "lib/index.js",
   "bin": {
