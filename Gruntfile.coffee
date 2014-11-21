@@ -11,7 +11,7 @@ module.exports = (grunt) ->
         options:
           port: 9001
           livereload: yes
-          base: "themes/#{theme}/#{lib}"
+          base: "doks"
           open:
             appName: 'google-chrome'
             target: 'http://127.0.0.1:<%= connect.dev.options.port %>'
