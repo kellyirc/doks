@@ -95,6 +95,10 @@ class MathExample
     * @param test
     * @goob lol
     */`
+  #`/**
+  # * @param test2
+  # * @goob lol2
+  # */`
   fun: (a = (->), b) -> a b
 
 # Editor Note: The general syntax for a tag is:
