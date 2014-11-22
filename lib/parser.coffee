@@ -28,8 +28,9 @@ class Expressions
     * @supports {coffee}
   ###
   @START_COMMENT =
-    js: /^\s*\/\*\*/,
+    js: /^\s*\/\*\*/
     coffee: /^\s*###\*/
+    escapedCoffee: /^\s*`\/\*\*/
 
   ###*
     * This regular expression is used to determine
@@ -41,8 +42,9 @@ class Expressions
     * @supports {coffee}
   ###
   @END_COMMENT =
-    js: /\*\/\s*$/,
+    js: /\*\/\s*$/
     coffee: /###\s*$/
+    escapedCoffee: /\*\/`\s*$/
 
   ###*
     * This regular expression is used to determine
@@ -55,8 +57,9 @@ class Expressions
     * @supports {coffee}
   ###
   @LINE_HEAD_CHAR =
-    js: /^\s*\*/,
+    js: /^\s*\*/
     coffee: /^\s*#/
+    escapedCoffee: /^\s*\*/
 
   ###*
     * This regular expression is used to split a file by lines.

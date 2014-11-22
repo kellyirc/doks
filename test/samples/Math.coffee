@@ -91,6 +91,10 @@ class MathExample
   ###
   mul: (a, b) -> a*b
 
+  `/**
+    * @param test
+    * @goob lol
+    */`
   fun: (a = (->), b) -> a b
 
 # Editor Note: The general syntax for a tag is:
