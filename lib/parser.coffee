@@ -30,7 +30,7 @@ class Expressions
   @START_COMMENT =
     js: /^\s*\/\*\*/
     coffee: /^\s*###\*/
-    escapedCoffee: /^\s*`\/\*\*/
+    escapedCoffee: /^\s\*#?`\/\*\*/
 
   ###*
     * This regular expression is used to determine
@@ -44,7 +44,7 @@ class Expressions
   @END_COMMENT =
     js: /\*\/\s*$/
     coffee: /###\s*$/
-    escapedCoffee: /\*\/`\s*$/
+    escapedCoffee: /#?\*\/`\s*$/
 
   ###*
     * This regular expression is used to determine
