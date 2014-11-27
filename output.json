@@ -24,7 +24,7 @@
         },
         {
             "lineNumber": 21,
-            "endLineNumber": 29,
+            "endLineNumber": 30,
             "filePath": "lib/parser.coffee",
             "fileName": "parser.coffee",
             "supports": [
@@ -35,6 +35,10 @@
                 {
                     "name": "supports",
                     "type": "coffee"
+                },
+                {
+                    "name": "supports",
+                    "type": "escapedCoffee"
                 }
             ],
             "desc": {
@@ -55,8 +59,8 @@
             }
         },
         {
-            "lineNumber": 35,
-            "endLineNumber": 44,
+            "lineNumber": 36,
+            "endLineNumber": 45,
             "filePath": "lib/parser.coffee",
             "fileName": "parser.coffee",
             "supports": [
@@ -91,8 +95,8 @@
             }
         },
         {
-            "lineNumber": 50,
-            "endLineNumber": 60,
+            "lineNumber": 51,
+            "endLineNumber": 61,
             "filePath": "lib/parser.coffee",
             "fileName": "parser.coffee",
             "supports": [
@@ -127,8 +131,8 @@
             }
         },
         {
-            "lineNumber": 66,
-            "endLineNumber": 72,
+            "lineNumber": 67,
+            "endLineNumber": 73,
             "filePath": "lib/parser.coffee",
             "fileName": "parser.coffee",
             "desc": {
@@ -149,8 +153,8 @@
             }
         },
         {
-            "lineNumber": 75,
-            "endLineNumber": 82,
+            "lineNumber": 76,
+            "endLineNumber": 83,
             "filePath": "lib/parser.coffee",
             "fileName": "parser.coffee",
             "desc": {
@@ -172,8 +176,8 @@
             }
         },
         {
-            "lineNumber": 85,
-            "endLineNumber": 91,
+            "lineNumber": 86,
+            "endLineNumber": 92,
             "filePath": "lib/parser.coffee",
             "fileName": "parser.coffee",
             "desc": {
@@ -194,8 +198,8 @@
             }
         },
         {
-            "lineNumber": 94,
-            "endLineNumber": 101,
+            "lineNumber": 95,
+            "endLineNumber": 102,
             "filePath": "lib/parser.coffee",
             "fileName": "parser.coffee",
             "param": [
@@ -223,8 +227,8 @@
             }
         },
         {
-            "lineNumber": 110,
-            "endLineNumber": 118,
+            "lineNumber": 111,
+            "endLineNumber": 119,
             "filePath": "lib/parser.coffee",
             "fileName": "parser.coffee",
             "param": [
@@ -256,8 +260,8 @@
             }
         },
         {
-            "lineNumber": 125,
-            "endLineNumber": 133,
+            "lineNumber": 126,
+            "endLineNumber": 134,
             "filePath": "lib/parser.coffee",
             "fileName": "parser.coffee",
             "param": [
@@ -289,8 +293,8 @@
             }
         },
         {
-            "lineNumber": 136,
-            "endLineNumber": 143,
+            "lineNumber": 137,
+            "endLineNumber": 144,
             "filePath": "lib/parser.coffee",
             "fileName": "parser.coffee",
             "desc": {
@@ -316,8 +320,8 @@
             }
         },
         {
-            "lineNumber": 146,
-            "endLineNumber": 153,
+            "lineNumber": 147,
+            "endLineNumber": 154,
             "filePath": "lib/parser.coffee",
             "fileName": "parser.coffee",
             "desc": {
@@ -343,8 +347,8 @@
             }
         },
         {
-            "lineNumber": 156,
-            "endLineNumber": 163,
+            "lineNumber": 157,
+            "endLineNumber": 164,
             "filePath": "lib/parser.coffee",
             "fileName": "parser.coffee",
             "desc": {
@@ -370,8 +374,8 @@
             }
         },
         {
-            "lineNumber": 166,
-            "endLineNumber": 174,
+            "lineNumber": 167,
+            "endLineNumber": 175,
             "filePath": "lib/parser.coffee",
             "fileName": "parser.coffee",
             "desc": {
@@ -397,8 +401,8 @@
             }
         },
         {
-            "lineNumber": 177,
-            "endLineNumber": 185,
+            "lineNumber": 178,
+            "endLineNumber": 186,
             "filePath": "lib/parser.coffee",
             "fileName": "parser.coffee",
             "desc": {
@@ -424,8 +428,8 @@
             }
         },
         {
-            "lineNumber": 188,
-            "endLineNumber": 196,
+            "lineNumber": 189,
+            "endLineNumber": 197,
             "filePath": "lib/parser.coffee",
             "fileName": "parser.coffee",
             "desc": {
@@ -451,8 +455,8 @@
             }
         },
         {
-            "lineNumber": 199,
-            "endLineNumber": 206,
+            "lineNumber": 200,
+            "endLineNumber": 207,
             "filePath": "lib/parser.coffee",
             "fileName": "parser.coffee",
             "desc": {
@@ -478,8 +482,8 @@
             }
         },
         {
-            "lineNumber": 209,
-            "endLineNumber": 217,
+            "lineNumber": 210,
+            "endLineNumber": 218,
             "filePath": "lib/parser.coffee",
             "fileName": "parser.coffee",
             "desc": {
@@ -505,8 +509,8 @@
             }
         },
         {
-            "lineNumber": 220,
-            "endLineNumber": 228,
+            "lineNumber": 221,
+            "endLineNumber": 229,
             "filePath": "lib/parser.coffee",
             "fileName": "parser.coffee",
             "desc": {
@@ -532,8 +536,8 @@
             }
         },
         {
-            "lineNumber": 231,
-            "endLineNumber": 238,
+            "lineNumber": 232,
+            "endLineNumber": 239,
             "filePath": "lib/parser.coffee",
             "fileName": "parser.coffee",
             "desc": {
@@ -559,8 +563,8 @@
             }
         },
         {
-            "lineNumber": 241,
-            "endLineNumber": 250,
+            "lineNumber": 242,
+            "endLineNumber": 251,
             "filePath": "lib/parser.coffee",
             "fileName": "parser.coffee",
             "param": [
@@ -597,8 +601,8 @@
             }
         },
         {
-            "lineNumber": 254,
-            "endLineNumber": 263,
+            "lineNumber": 255,
+            "endLineNumber": 264,
             "filePath": "lib/parser.coffee",
             "fileName": "parser.coffee",
             "desc": {
@@ -627,8 +631,8 @@
             }
         },
         {
-            "lineNumber": 271,
-            "endLineNumber": 281,
+            "lineNumber": 272,
+            "endLineNumber": 282,
             "filePath": "lib/parser.coffee",
             "fileName": "parser.coffee",
             "param": [
@@ -665,8 +669,8 @@
             }
         },
         {
-            "lineNumber": 340,
-            "endLineNumber": 350,
+            "lineNumber": 341,
+            "endLineNumber": 351,
             "filePath": "lib/parser.coffee",
             "fileName": "parser.coffee",
             "desc": {
@@ -698,8 +702,8 @@
             }
         },
         {
-            "lineNumber": 399,
-            "endLineNumber": 406,
+            "lineNumber": 400,
+            "endLineNumber": 407,
             "filePath": "lib/parser.coffee",
             "fileName": "parser.coffee",
             "desc": {
@@ -725,8 +729,8 @@
             }
         },
         {
-            "lineNumber": 421,
-            "endLineNumber": 428,
+            "lineNumber": 422,
+            "endLineNumber": 429,
             "filePath": "lib/parser.coffee",
             "fileName": "parser.coffee",
             "desc": {
@@ -747,8 +751,8 @@
             }
         },
         {
-            "lineNumber": 438,
-            "endLineNumber": 445,
+            "lineNumber": 439,
+            "endLineNumber": 446,
             "filePath": "lib/parser.coffee",
             "fileName": "parser.coffee",
             "desc": {
@@ -770,11 +774,11 @@
             }
         }
     ],
-    "startTime": 1417106345972,
-    "endTime": 1417106345978,
+    "startTime": 1417106604990,
+    "endTime": 1417106604996,
     "git": {
-        "short": "30f0d3e",
-        "long": "30f0d3ebe3ecae879d9f1571b35651e4e4589508",
+        "short": "cfda361",
+        "long": "cfda361c642e45b0259ec06af66ed1e28fa12d09",
         "branch": "master",
         "tag": "0.2.6"
     }
