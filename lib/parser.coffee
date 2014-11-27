@@ -26,6 +26,7 @@ class Expressions
     * @package Regex
     * @supports {js}
     * @supports {coffee}
+    * @supports {escapedCoffee}
   ###
   @START_COMMENT =
     js: /^\s*\/\*\*/
