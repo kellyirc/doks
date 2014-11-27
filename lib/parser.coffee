@@ -40,6 +40,7 @@ class Expressions
     * @package Regex
     * @supports {js}
     * @supports {coffee}
+    * @supports {escapedCoffee}
   ###
   @END_COMMENT =
     js: /\*\/\s*$/
@@ -55,6 +56,7 @@ class Expressions
     * @package Regex
     * @supports {js}
     * @supports {coffee}
+    * @supports {escapedCoffee}
   ###
   @LINE_HEAD_CHAR =
     js: /^\s*\*/
