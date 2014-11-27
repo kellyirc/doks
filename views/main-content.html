@@ -167,7 +167,7 @@
                                 <span class="tag-data-type badge badge-default" ng-if="tag.value && tag.value.type">({{tag.value.type}})</span>
                                 <span class="tag-data-basic" ng-if="tag.value.basicInfo">{{tag.value.basicInfo}}</span>
                             </div>
-                            <p class="tag-desc-item" ng-if="tag.value.extendedInfo">{{tag.value.extendedInfo}}</p>
+                            <p class="tag-desc-item" ng-if="!_.isUndefined(tag.value.extendedInfo)">{{tag.value.extendedInfo}}</p>
                         </li>
                     </ul>
                 </div>
