@@ -239,6 +239,16 @@ class Parser
     ###
     @options.templateOptions ?= {}
 
+    ###*
+      * This option allows specification of the order of tags when generating output.tree.json
+      *
+      * @name keySort
+      * @category Option
+      * @package TagParser
+      * @default {array} []
+    ###
+    @options.keySort ?= []
+
   ###*
     * This function turns a file path into just a file name.
     *
@@ -398,6 +408,29 @@ class Parser
     _.flatten _.values fileMap
 
   ###*
+    * This function takes flat doks array and sorts it according to options.keySort.
+    *
+    * @name parseIntoTree
+    * @category Function
+    * @package TagParser
+    * @return {object} A recursive tree representing nodes as defined by options.keySort
+  ###
+  parseIntoTree: ->
+    baseNodes = @parse()
+
+    recurse = (nodeArray, keys, level = 0) ->
+      return (_.sortBy nodeArray, (node) -> node[keys[level]].basicInfo) if level is keys.length - 1
+
+      uniqueKeys = _.sortBy _.uniq _.pluck (_.pluck nodeArray, keys[level]), 'basicInfo'
+      children = _.map uniqueKeys, (key) -> _name: key
+
+      _.each children, (child) ->
+        nodesMatchingKey = _.filter nodeArray, (node) -> node[keys[level]].basicInfo is child._name
+        child._children = recurse nodesMatchingKey, keys, level+1
+
+    recurse baseNodes, @options.keySort
+
+  ###*
     * This function takes the options.json glob and gathers all of the specified JSON files into an object.
     *
     * @name getJSON
@@ -444,11 +477,11 @@ class Parser
     * @category Function
     * @package TagParser
   ###
-  write: (fileLoc = "#{root}/#{@options.outputPath}/output.json") ->
+  write: (func = @parse, fileLoc = "#{root}/#{@options.outputPath}/output.json") ->
     return if not @options
 
     startDate = Date.now()
-    parsedData = @parse()
+    parsedData = func.call @
     endDate = Date.now()
 
     data =
