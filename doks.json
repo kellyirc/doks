@@ -1,6 +1,7 @@
 {
   "language": "coffee",
   "glob": "lib/parser.coffee",
+  "keySort": ["package", "category", "name"],
   "arrayTags": [
     "supports",
     "param"

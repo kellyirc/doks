@@ -63,7 +63,7 @@
                         <div class="panel-heading">Navigate Doks</div>
                         <div class="panel-body nav-container" ng-class="{'no-padding-top': config.options.nav.categorySeparate || config.options.nav.mainTypeRight}">
 
-                            <div ng-repeat="category in orderedData" ng-hide="urlParams.category && category._name !== urlParams.category">
+                            <div ng-repeat="category in data.parsed" ng-hide="urlParams.category && category._name !== urlParams.category">
                                 <ng-include src="'nav-template'" ng-init="mainObj = category" ng-class="{'special-category': config.options.nav.categorySeparate}"></ng-include>
 
                                 <div ng-repeat="mainType in category._children track by $index"  ng-hide="urlParams.mainType && mainType._name !== urlParams.mainType">
@@ -84,7 +84,7 @@
                 <div class="col-md-12" ncy-breadcrumb></div>
             </div>
             <div class="row">
-                <div ng-repeat="category in orderedData" ng-hide="urlParams.category && category._name !== urlParams.category">
+                <div ng-repeat="category in data.parsed" ng-hide="urlParams.category && category._name !== urlParams.category">
 
                     <div ng-repeat="mainType in category._children track by $index" ng-hide="urlParams.mainType && mainType._name !== urlParams.mainType">
                         <ng-include src="'item-template'" ng-hide="urlParams.subType" ng-init="mainObj = mainType"></ng-include>

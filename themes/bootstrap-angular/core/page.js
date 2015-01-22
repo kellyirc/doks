@@ -82,15 +82,8 @@ angular.module('doks', ['mgcrea.ngStrap', 'ui.router', 'ui.select', 'ncy-angular
                 .split('%filePath').join(dok.filePath);
         };
 
-        var cleanList = function(list) {
-            return _.uniq(_.compact(list));
-        };
-
-        var filterArray = function(dataSet, configKey) {
-            return cleanList(_.map(dataSet, function(item) {
-                var key = item[$scope.config.keys[configKey]];
-                return key ? key.basicInfo : null;
-            }));
+        var filterArray = function(dataSet) {
+            return _.pluck(dataSet, '_name');
         };
 
         var orderArray = function(mainKey, subKey, nameKey) {
@@ -145,15 +138,9 @@ angular.module('doks', ['mgcrea.ngStrap', 'ui.router', 'ui.select', 'ncy-angular
                 $http.get('output.json')
                     .success(function(data) {
                         $scope.data = data;
+                        $scope.categories = filterArray($scope.data.parsed);
                     });
             });
-
-        $scope.$watch('data', function(newVal, oldVal) {
-            if(newVal === oldVal) return;
-
-            $scope.categories = filterArray($scope.data.parsed, 'category');
-            $scope.orderedData = orderArray('category', 'mainType', 'subType');
-        });
     }])
 
     .controller('Content', ['$scope', '$stateParams', '$state', function($scope, $stateParams, $state) {
