@@ -419,13 +419,14 @@ class Parser
     baseNodes = @parse()
 
     recurse = (nodeArray, keys, level = 0) ->
-      return (_.sortBy nodeArray, (node) -> node[keys[level]].basicInfo) if level is keys.length - 1
+      key = keys[level]
+      return (_.sortBy nodeArray, (node) -> node[key].basicInfo) if level is keys.length - 1
 
-      uniqueKeys = _.sortBy _.uniq _.pluck (_.pluck nodeArray, keys[level]), 'basicInfo'
+      uniqueKeys = _.sortBy _.uniq _.pluck (_.pluck nodeArray, key), 'basicInfo'
       children = _.map uniqueKeys, (key) -> _name: key
 
       _.each children, (child) ->
-        nodesMatchingKey = _.filter nodeArray, (node) -> node[keys[level]].basicInfo is child._name
+        nodesMatchingKey = _.filter nodeArray, (node) -> node[key].basicInfo is child._name
         child._children = recurse nodesMatchingKey, keys, level+1
 
     recurse baseNodes, @options.keySort
