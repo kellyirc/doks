@@ -86,51 +86,6 @@ angular.module('doks', ['mgcrea.ngStrap', 'ui.router', 'ui.select', 'ncy-angular
             return _.pluck(dataSet, '_name');
         };
 
-        var orderArray = function(mainKey, subKey, nameKey) {
-            var keys = $scope.config.keys;
-            var hasMainKey = function(value) { return value[keys[mainKey]]; };
-            var hasSubKey = function(value) { return value[keys[subKey]]; };
-            var data = _.filter($scope.data.parsed, hasMainKey);
-
-            return _(data)
-                .map(function(value) { return value[keys[mainKey]].basicInfo; })
-                .uniq()
-                .sortBy()
-                .map(function(category) {
-                    var matchesCategory = function(value) { return value[keys[mainKey]].basicInfo === category; };
-
-                    return {
-                        _name: category,
-                        _children: _(data)
-                            .filter(hasSubKey)
-                            .filter(matchesCategory)
-                            .map(function(value) { return value[keys[subKey]].basicInfo; })
-                            .uniq()
-                            .sortBy()
-                            .map(function(objectKey) {
-                                return _.assign({
-                                    _name: objectKey,
-                                    _children: _(data)
-                                        .filter(hasSubKey)
-                                        .filter(matchesCategory)
-                                        .filter(function(value) { return value[keys[subKey]].basicInfo === objectKey; })
-                                        .reject(function(value) { return value[keys[nameKey]] && value[keys[nameKey]].basicInfo === objectKey; })
-                                        .each(function(value) { value._props = $scope.propsAsArray(value); })
-                                        .value()
-                                }, _.findWhere(data, function(item) {
-                                    return item[keys[mainKey]].basicInfo === category &&
-                                        item[keys[subKey]] &&
-                                        item[keys[subKey]].basicInfo === objectKey &&
-                                        item[keys[nameKey]] &&
-                                        item[keys[nameKey]].basicInfo === objectKey;
-                                }));
-                            })
-                            .value()
-                    };
-                })
-                .value();
-        };
-
         $http.get('config.json')
             .success(function(data) {
                 $scope.config = data;
@@ -138,13 +93,15 @@ angular.module('doks', ['mgcrea.ngStrap', 'ui.router', 'ui.select', 'ncy-angular
                 $http.get('output.json')
                     .success(function(data) {
                         $scope.data = data;
+                        $scope.flatData = _.flatten(_.flatten($scope.data.parsed, '_children'), '_children');
                         $scope.categories = filterArray($scope.data.parsed);
                     });
             });
     }])
 
-    .controller('Content', ['$scope', '$stateParams', '$state', function($scope, $stateParams, $state) {
+    .controller('Content', ['$scope', '$stateParams', '$state', '$location', function($scope, $stateParams, $state, $location) {
         $scope.urlParams = $stateParams;
+        $scope.pageParams = $location.search();
         $scope._ = window._;
 
         $scope.contentFilter = {};
@@ -152,6 +109,15 @@ angular.module('doks', ['mgcrea.ngStrap', 'ui.router', 'ui.select', 'ncy-angular
         if($scope.urlParams.category) $scope.contentFilter[$scope.$parent.config.keys.category] = $scope.urlParams.category;
         if($scope.urlParams.mainType) $scope.contentFilter[$scope.$parent.config.keys.mainType] = $scope.urlParams.mainType;
         if($scope.urlParams.subType)  $scope.contentFilter[$scope.$parent.config.keys.subType]  = $scope.urlParams.subType;
+
+        $scope.checkItemVisibility = function(category, mainType, item) {
+            var filter = $scope.pageParams.filter;
+            if(!filter) {
+                return true;
+            }
+            filter = filter.toLowerCase();
+            return category._name.toLowerCase().indexOf(filter) !== -1 || mainType._name.toLowerCase().indexOf(filter) !== -1 || item[$scope.config.keys.subType].basicInfo.toLowerCase().indexOf(filter) !== -1;
+        };
 
         $scope.doFilter = function($item) {
             var category = $item[$scope.config.keys.category];
