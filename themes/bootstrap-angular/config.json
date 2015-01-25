@@ -17,6 +17,7 @@
     },
     "content": {
       "showFileLabels": true,
+      "suppressProps": ["category","name","package"],
       "sourceLink": "https://github.com/kellyirc/doks/tree/master/%filePath#L%lineNumber-L%endLineNumber"
     }
   }
