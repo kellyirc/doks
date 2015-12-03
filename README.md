@@ -23,7 +23,7 @@ If you choose to run it from the command line, the best option is to create a `d
 
 Languages supported
 -------------------
-* `coffee` - coffeescript style comments, using `###` as the start and end, or `###*` as the start of the block, and `### as the end.
+* `coffee` - coffeescript style comments, using `###` as the start and end, or `###*` as the start of the block, and `###` as the end.
 * `js` - js/javadoc style comments, using `/**` and `*/` as the start and end tokens, respectively.
 * `escapedCoffee` - js-style comments, escaped for coffeescript usage. Tokens are the same as `js`-style comments, except they have a backtick (`) on the left of the opening token, and the right of the closing token.
 
